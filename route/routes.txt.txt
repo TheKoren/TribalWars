@@ -1,0 +1,74 @@
+Routing
+
+GET, POST	/						- login	
+			getUserCredentialsMW
+			checkUserCredentialsMW
+			renderMW(index.html)
+
+GET, POST	/forgottenpassword				- forgottenpassword.html
+			getUserCredentialsMW
+			saveUserCredentialsMW
+			renderMW(forgottenpassword.html)
+			
+			
+GET, POST	/newaccount					- registration.html
+			getUserCredentialsMW
+			saveUserCredentialsMW
+			renderMW(registration.html)
+
+GET		/village					- villagelist.html
+			authMW
+			getVillagesMW
+			renderMW(villagelist.html)
+
+
+GET, POST	/village/new					- newvillage.html
+			authMW
+			saveVillageMW
+			renderMW(newvillage.html)
+
+GET		/village/del/:villageid				- deletes a village
+			authMW
+			getVillageMW
+			delVillageMW
+	
+GET		/village/view/:villageid 			- villageview.html
+			authMW
+			getVillageMW
+			getKnightsMW
+			renderMW(villageview.html)
+
+GET, POST	/village/edit/:villageid			- renamevillage.html
+			authMW
+			getVillageMW
+			saveVillageMW
+			renderMW(renamevillage.html)
+
+GET, POST	/village/addknight/:villageid			- newknight.html
+			authMW
+			saveKnightMW
+			renderMW(newknight.html)
+
+GET, POST	/knight/:villageid/:knightid/edit		- editknight.html
+			authMW
+			getVillageMW
+			getKnightMW
+			saveKnightMW
+			renderMW(editknight.html)
+
+GET		/knight/:villageid/:knightid/del		- Deletes knight
+			authMW
+			getKnightMW
+			delKnightMW
+
+GET, POST	/attack/:villageid				- attack.html
+			authMW
+			getVillagesMW
+			renderMW(attack.html)
+
+GET		/attack/:villageid/report			- battlereport.html
+			authMW
+			getVillageMW
+			getKnightsMW
+			calculateBattleMW
+			renderMW(battlereport.html)

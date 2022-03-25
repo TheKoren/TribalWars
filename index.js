@@ -5,6 +5,8 @@ const colors = require('colors');
 
 app.use(express.static('public'));
 
+require('./route/index')(app);
+
 var server = app.listen(port, function () {
     console.log(`Listening on port ${port}`);
     console.log("Working".green)
