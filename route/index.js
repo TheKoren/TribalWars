@@ -18,7 +18,7 @@ const calculateBattleMW = require('../middleware/battle/calculateBattleMW');
 /**Other MiddleWares*/
 const renderMW = require('../middleware/renderMW');
 
-module.export = function (app) {
+module.exports = function (app) {
     const objRepo = {};
 
     app.use('/',
