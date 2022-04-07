@@ -1,16 +1,11 @@
-<html>
-  <head>
-    <title>TribalWars</title>
-  </head>
-  <body>
+<%- include('header') -%>
     <h1>Edit knight</h1>
-    <form action ="villageview.html">
+    <form action ="/village/view/:villageid">
       <label>New name: </label>
       <input type="Name" placeholder="Enter new name" name="name" required>
       <button type="submit">Create</button>
     </form>
     <div class = "Links">
-      <a href="villageview.html">Cancel</a>
+      <a href="/village/view/:villageid">Cancel</a>
     </div>
-  </body>
-</html>
+<%- include('footer') -%>

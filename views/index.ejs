@@ -1,10 +1,6 @@
-<html>
-  <head>
-    <title>TribalWars</title>
-  </head>
-  <body>
+<%- include('header') -%>
     <h1>TribalWars User Login</h1>
-    <form action ="villagelist.html">
+    <form action ="/village'">
       <label>Username: </label>
       <input type="text" placeholder="Enter Username" name="username" required>
       <label>Password: </label>
@@ -12,8 +8,7 @@
       <button type="submit">Login</button>
     </form>
     <div class = "Links">
-      <a href="registration.html">Registration</a>
-      <a href="forgottenpassword.html">Forgotten password</a>
+      <a href="/registration">Registration</a>
+      <a href="/forgottenpassword">Forgotten password</a>
     </div>
-  </body>
-</html>
+<%- include('footer') -%>

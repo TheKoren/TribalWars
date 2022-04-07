@@ -1,0 +1,29 @@
+<%- include('header') -%>
+    <h1>Village View</h1>
+    <a href="/">Logout</a>
+    <a href="/village/new">Create new village</a>
+    <br>
+    <br>
+    <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Raw Materials</th>
+                <th>Number of knights</th>
+                <th>Villageview</th>
+            </tr>
+            <% villages.forEach(function(village) { %> 
+                <tr align="center">
+                    <td>
+                        <%= village.name %>
+                    </td>
+                    <td>
+                        <%= village.materials %>
+                    </td>
+                    <td>
+                        <%= village.knights %>
+                    </td>
+                    <td allign='center'><a href="/village/view/<%= village._id %> ">View</a>|<a href="/village">Delete</a></td>
+                </tr>
+            <% }); %> 
+    </table>
+<%- include('footer') -%>

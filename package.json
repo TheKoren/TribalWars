@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/TheKoren/TribalWars#readme",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "colors": "^1.4.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.3"
   }
 }

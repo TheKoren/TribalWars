@@ -4,6 +4,13 @@
 
  module.exports = function (objectrepository) {
     return function (req, res, next) {
-        next();
+        res.locals.village =
+            {
+                _id : '1',
+                name: 'Nev1',
+                materials: '420',
+                knights: '2'
+            };
+        return next();
     };
 };

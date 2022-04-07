@@ -1,8 +1,4 @@
-<html>
-  <head>
-    <title>TribalWars</title>
-  </head>
-  <body>
+<%- include('header') -%>
     <h1>Attack village</h1>
     <label for="villages">Target</label>
 
@@ -11,8 +7,7 @@
         <option value="tmit">TMIT City</option>
     </select>
     <div class = "Links">
-        <a href="villageview.html">Cancel</a>
-        <form action ="battlereport.html"><button type="submit">Begin Assault</button></form>
+        <a href="/village/view/:villageid">Cancel</a>
+        <form action ="/attack/:villageid/report"><button type="submit">Begin Assault</button></form>
     </div>
-  </body>
-</html>
+<%- include('footer') -%>

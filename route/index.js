@@ -19,22 +19,9 @@ const calculateBattleMW = require('../middleware/battle/calculateBattleMW');
 const renderMW = require('../middleware/renderMW');
 
 module.exports = function (app) {
-    const objRepo = {};
+    const objRepo = {
 
-    app.use('/',
-        getUserCredentialsMW(objRepo),
-        checkUserCredentialsMW(objRepo),
-        renderMW(objRepo, 'index'));
-
-    app.use('/forgottenpassword',
-        getUserCredentialsMW(objRepo),
-        saveUserCredentialsMW(objRepo),
-        renderMW(objRepo,'forgottenpassword'));
-    
-    app.use('/newaccount',
-        getUserCredentialsMW(objRepo),
-        saveUserCredentialsMW(objRepo),
-        renderMW(objRepo, 'registration'));
+    };
     
     app.get('/village',
         authMW(objRepo),
@@ -44,7 +31,7 @@ module.exports = function (app) {
     app.use('/village/new',
         authMW(objRepo),
         saveVillageMW(objRepo),
-        renderMW(objRepo, 'newvillage'));
+        renderMW(objRepo, 'editvillage'));
     
     app.get('/village/del/:villageid',
         authMW(objRepo),
@@ -61,7 +48,7 @@ module.exports = function (app) {
         authMW(objRepo),
         getVillageMW(objRepo),
         saveVillageMW(objRepo),
-        renderMW(objRepo, 'renamevillage'));
+        renderMW(objRepo, 'editvillage'));
     
     app.use('/village/addknight/:villageid',
         authMW(objRepo),
@@ -91,4 +78,20 @@ module.exports = function (app) {
         getKnightsMW(objRepo),
         calculateBattleMW(objRepo),
         renderMW(objRepo, 'battlereport'));
+        
+    app.use('/forgottenpassword',
+        getUserCredentialsMW(objRepo),
+        saveUserCredentialsMW(objRepo),
+        renderMW(objRepo,'forgottenpassword'));
+    
+    app.use('/registration',
+        getUserCredentialsMW(objRepo),
+        saveUserCredentialsMW(objRepo),
+        renderMW(objRepo, 'registration'));
+
+    app.use('/',
+        getUserCredentialsMW(objRepo),
+        checkUserCredentialsMW(objRepo),
+        renderMW(objRepo, 'index'));
+
 };
