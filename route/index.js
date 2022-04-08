@@ -53,7 +53,7 @@ module.exports = function (app) {
     app.use('/village/addknight/:villageid',
         authMW(objRepo),
         saveKnightMW(objRepo),
-        renderMW(objRepo, 'newknight'));
+        renderMW(objRepo, 'editknight'));
 
     app.use('/knight/:villageid/:knightid/edit',
         authMW(objRepo),

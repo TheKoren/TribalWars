@@ -5,6 +5,15 @@
 
  module.exports = function (objectrepository) {
     return function (req, res, next) {
-        next();
+        if((typeof req.body.name === 'undefined') ||
+        (typeof req.body.materials == 'undefined') ||
+        (typeof req.body.knights == 'undefined'))
+            {
+                console.log("Body undefined");
+                return next();
+            }
+            console.log("Saving village");
+            console.log(req.body);
+        return next();
     };
 };

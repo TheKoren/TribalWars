@@ -6,6 +6,14 @@
 
  module.exports = function (objectrepository) {
     return function (req, res, next) {
-        next();
+        if((typeof req.body.name === 'undefiend') ||
+        (typeof req.body.xp === 'undefined'))
+        {
+            console.log("Body undefined");
+            return next();
+        }
+        console.log("Saving knight");
+        console.log(req.body);
+        return next();
     };
 };

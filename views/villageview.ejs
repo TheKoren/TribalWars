@@ -1,26 +1,27 @@
 <%- include('header') -%>
     <div>
-        <h1>Stormwind</h1> 
+        <h1>Name: <%= village.name %></h1> 
         <a href="/village/edit/1">Rename</a>
     </div>
-    <p1>Materials: 62</p1>
-    <h2>Knights</h2>
+    <p1> Materials: <%= village.materials %> </p1>
+    <h2> Number of knights: <%= village.knights %></h2>
     <table border="1">
         <tr>
             <th>Name</th>
             <th>Level</th>
             <th>Options</th>
         </tr>
+        <% knights.forEach(function(knight) { %> 
         <tr>
-            <td>Sir Percival</td>
-            <td>Novice</td>
-            <td allign='center'><a href="/knight/:villageid/1/edit">Rename</a>|<a href="/village/view/1">Delete</a></td>
+            <td>
+                <%= knight.name %>     
+            </td>
+            <td>
+                <%= knight.xp %> 
+            </td>
+            <td allign='center'><a href="/knight/:villageid/<%= knight._id %> /edit">Rename</a>|<a href="/village/view/1">Delete</a></td>
         </tr>
-        <tr>
-            <td>Sir Dleorick</td>
-            <td>Veteran</td>
-            <td allign='center'><a href="/knight/:villageid/2/edit">Rename</a>|<a href="/village/view/1">Delete</a></td>
-        </tr>
+        <% }); %> 
     </table>
     <h2>Actions</h2>
     <div class = "Links">

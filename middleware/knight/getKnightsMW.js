@@ -7,12 +7,12 @@
 
         res.locals.knights = [
             {
-                _id : 'id1',
+                _id : '2',
                 name: 'Nev1',
                 xp: 'Novice'
             },
             {
-                _id : 'id2',
+                _id : '3',
                 name: 'Nev2',
                 xp: 'Pro'
             }

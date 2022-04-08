@@ -1,11 +1,18 @@
 <%- include('header') -%>
-    <h1>Edit knight</h1>
-    <form action ="/village/view/:villageid">
+    <h1>Knight
+      <% if(typeof knight === 'undefined') { %>
+        Creation
+        <% }else{ %>
+        Rename
+        <%  }%>   
+    </h1>
+    <form method = "POST" action ="/village/view/1">
       <label>New name: </label>
-      <input type="Name" placeholder="Enter new name" name="name" required>
-      <button type="submit">Create</button>
+      <input type="Name" placeholder="Enter name" name="name" required
+      value ="<%= (typeof knight === 'undefined') ? '' : knight.name %> ">
+      <input type="submit" value="Done"></input>
     </form>
     <div class = "Links">
-      <a href="/village/view/:villageid">Cancel</a>
+      <a href="/village/view/1">Cancel</a>
     </div>
 <%- include('footer') -%>
