@@ -1,6 +1,7 @@
 /**
  * Gets all the Knights from the DB for the given villageID
  */
+ const requireOption = require("../requireOption").requireOption;
 
  module.exports = function (objectrepository) {
     return function (req, res, next) {

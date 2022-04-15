@@ -3,6 +3,7 @@ const authMW = require('../middleware/auth/authMW');
 const checkUserCredentialsMW = require('../middleware/auth/checkUserCredentialsMW');
 const getUserCredentialsMW = require('../middleware/auth/getUserCredentialsMW');
 const saveUserCredentialsMW = require('../middleware/auth/saveUserCredentialsMW');
+const logoutMW = require('../middleware/auth/logoutMW');
 /** Village MiddleWares */
 const getVillageMW = require('../middleware/village/getVillageMW');
 const getVillagesMW = require('../middleware/village/getVillagesMW');
@@ -18,9 +19,15 @@ const calculateBattleMW = require('../middleware/battle/calculateBattleMW');
 /**Other MiddleWares*/
 const renderMW = require('../middleware/renderMW');
 
+const UserModel = require('../models/user');
+const VillageModel = require('../models/village');
+const KnightModel = require('../models/knight');
+
 module.exports = function (app) {
     const objRepo = {
-
+        UserModel: UserModel,
+        VillageModel: VillageModel,
+        KnightModel: KnightModel
     };
     
     app.get('/village',
@@ -88,6 +95,9 @@ module.exports = function (app) {
         getUserCredentialsMW(objRepo),
         saveUserCredentialsMW(objRepo),
         renderMW(objRepo, 'registration'));
+
+    app.use('/logout',
+        logoutMW(objRepo));
 
     app.use('/',
         getUserCredentialsMW(objRepo),

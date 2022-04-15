@@ -2,22 +2,20 @@
  * Gets all villages from DB
  */
 
+const requireOption = require("../requireOption").requireOption;
+
  module.exports = function (objectrepository) {
+
+    const VillageModel = requireOption(objectrepository, 'VillageModel');
+
     return function (req, res, next) {
-            res.locals.villages = [
-                {
-                    _id : '1',
-                    name: 'Nev1',
-                    materials: '420',
-                    knights: '2'
-                },
-                {
-                    _id : '2',
-                    name: 'Nev2',
-                    materials: '69',
-                    knights: '1'
-                }
-            ];
+        VillageModel.find({}, function (err, villages) {
+            if(err){
+                return next(err);
+            }
+
+            res.locals.villages = villages;
             return next();
+        });
     };
 };

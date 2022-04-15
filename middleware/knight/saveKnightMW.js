@@ -3,6 +3,7 @@
  * If it's not an update, the function creates a new entity.
  * Can be used on both /village/addknight/:villageid and /knight/:villageid/:knightid/edit routes.
  */
+ const requireOption = require("../requireOption").requireOption;
 
  module.exports = function (objectrepository) {
     return function (req, res, next) {

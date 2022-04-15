@@ -3,17 +3,31 @@ const app = express();
 const port = 3000;
 const colors = require('colors');
 const bodyParser = require('body-parser');
+var session = require('express-session');
+
 
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.use(express.static('public'));
+app.use(express.static('static'));
 
+app.use(
+    session({
+        secret: 'secret'
+    })
+);
+
+// Loading routing
 require('./route/index')(app);
 
-var server = app.listen(port, function () {
+app.use((err, req, res, next) => {
+    res.end('Problem...');
+    console.log(err);
+});
+
+app.listen(port, function () {
     console.log(`Listening on port ${port}`);
     console.log("Working".green)
 });

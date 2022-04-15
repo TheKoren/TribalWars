@@ -7,6 +7,9 @@
       <input type="password" placeholder="*********" name="password" required>
       <button type="submit">Login</button>
     </form>
+    <% if(typeof error != 'undefined') { %>
+      <div class"alert alert-danger"><%= error %></div>
+      <% } %> 
     <div class = "Links">
       <a href="/registration">Registration</a>
       <a href="/forgottenpassword">Forgotten password</a>
