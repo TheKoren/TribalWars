@@ -4,13 +4,14 @@
  const requireOption = require("../requireOption").requireOption;
 
  module.exports = function (objectrepository) {
-    return function (req, res, next) {
-        res.locals.knight = 
-        {
-            _id: '1',
-            name: 'Sir Arthur',
-            xp: 'Amateur'
-        }; 
-        next();
+     const KnightModel = requireOption(objectrepository, 'KnightModel');
+    return (req, res, next) => {
+        return KnightModel.findOne({_id: req.params.itemid}, (err, knight) => {
+            if(err || !knight){
+                return next(err);
+            }
+            res.locals.knight = knight;
+            return next();
+        })
     };
 };

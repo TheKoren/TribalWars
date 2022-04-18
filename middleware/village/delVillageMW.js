@@ -4,17 +4,25 @@
  const requireOption = require("../requireOption").requireOption;
 
  module.exports = function (objectrepository) {
-    return function (req, res, next) {
+    return async (req, res, next) => {
         if(typeof res.locals.village === 'undefined'){
             return next();
         }
         
-        res.locals.village.remove(err => {
+        for(var i of res.locals.knights){
+            await i.remove(err => {
+                if(err){
+                   return next(err);
+                }
+            });
+        }
+
+        await res.locals.village.remove(err => {
             if(err){
                 return next(err);
             }
             
-            return res.redirect('/village')
+            return res.redirect('/village');
         })
     };
 };

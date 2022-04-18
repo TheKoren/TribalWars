@@ -4,20 +4,19 @@
  const requireOption = require("../requireOption").requireOption;
 
  module.exports = function (objectrepository) {
-    return function (req, res, next) {
+     const KnightModel = requireOption(objectrepository, 'KnightModel');
+    return (req, res, next) => {
+        if(typeof res.locals.village === 'undefined'){
+            return next();
+        }
 
-        res.locals.knights = [
-            {
-                _id : '2',
-                name: 'Nev1',
-                xp: 'Novice'
-            },
-            {
-                _id : '3',
-                name: 'Nev2',
-                xp: 'Pro'
+        return KnightModel.find({_village: res.locals.village._id}, (err, knights) => {
+            if(err){
+                return next(err);
             }
-        ];
-        next();
+
+            res.locals.knights = knights;
+            return next();
+        });
     };
 };

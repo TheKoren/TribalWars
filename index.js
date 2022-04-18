@@ -27,7 +27,7 @@ app.use((err, req, res, next) => {
     console.log(err);
 });
 
-app.listen(port, function () {
-    console.log(`Listening on port ${port}`);
+const server = app.listen(port, function () {
+    console.log(`Listening on ${server.address()}:${server.address().port}`);
     console.log("Working".green)
 });

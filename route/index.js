@@ -43,6 +43,7 @@ module.exports = function (app) {
     app.get('/village/del/:villageid',
         authMW(objRepo),
         getVillageMW(objRepo),
+        getKnightsMW(objRepo),
         delVillageMW(objRepo));
 
     app.get('/village/view/:villageid',

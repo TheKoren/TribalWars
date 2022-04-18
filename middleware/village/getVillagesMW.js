@@ -5,11 +5,9 @@
 const requireOption = require("../requireOption").requireOption;
 
  module.exports = function (objectrepository) {
-
     const VillageModel = requireOption(objectrepository, 'VillageModel');
-
-    return function (req, res, next) {
-        VillageModel.find({}, function (err, villages) {
+    return (req, res, next) => {
+        return VillageModel.find({}, function (err, villages) {
             if(err){
                 return next(err);
             }

@@ -7,14 +7,19 @@
         Rename
       <% } %> 
     </h1>
-    <form method ="POST" action ="/village">
-      <label>Name: </label>
-      <input type="Name" placeholder="Enter name" name="name" required 
-      value="<%= (typeof village === 'undefined') ? '' : village.name %> ">
-      <input type="submit" value="Done"></input>
+    <form method="POST" style="margin-top: 8px;">
+      <div class="form-group">
+        <label for="villageNameInput">Name: </label>
+        <input id="villageNameInput" name="Name" type="text" class="form-control"
+        value="<%= (typeof village === 'undefined') ? '' : village.name %> ">
+      </div>
+      <% if(typeof village === 'undefined') {%> 
+      <button href="/village" class="btn btn-primary" style="margin-top: 16px;">Save</button>
+      <% }else{ %>
+      <button href="/village/view/<%= res.locals.village._id %> " class="btn btn-primary" style="margin-top: 16px;">Save</button>
+      <% } %> 
     </form>
     <div class = "Links">
-      <a 
-      href="<%= (typeof village === 'undefined') ? '/village' : '/village/view/' + village._id %>">Cancel</a>
+      <a href="<%= (typeof village === 'undefined') ? '/village' : '/village/view/' + village._id %>" class="btn btn-sm btn-secondary"><i class="bi bi-arrow-return-left"></i></a>
     </div>
 <%- include('footer') -%>

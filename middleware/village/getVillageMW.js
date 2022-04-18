@@ -5,8 +5,8 @@
 
  module.exports = function (objectrepository) {
     const VillageModel = requireOption(objectrepository, 'VillageModel');
-    return function (req, res, next) {
-        VillageModel.findOne({_id: req.params.villageid},
+    return (req, res, next) => {
+        return VillageModel.findOne({_id: req.params.villageid},
             (err, village) => {
                 if(err || !village){
                     return next(err);

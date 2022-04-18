@@ -8,13 +8,24 @@
         Rename
         <%  }%>   
     </h1>
-    <form method = "POST" action ="/village/view/1">
-      <label>New name: </label>
-      <input type="Name" placeholder="Enter name" name="name" required
+    <% if(!(typeof knight === 'undefined')){ %>
+      <h2> 
+        <%= knight.name %>... 
+      </h2>
+    <form method = "POST" style ="margin-top: 8px;">
+    <div class "form-group">
+      <label for="knightNameInput">Name:</label>
+      <input id="knightNameInput" name="Name" type="text" class="form-control"
       value ="<%= (typeof knight === 'undefined') ? '' : knight.name %> ">
-      <input type="submit" value="Done"></input>
+    </div>
+    <% if(typeof knight === 'undefined') { %>
+    <button href="village/addknight/<%= res.locals.village._id %>" class="btn btn-primary" style="margin-top: 16px;">Save</button>
+    <%}else{ %>
+    <button href="knight/<%= res.locals.village._id %> / <%= res.locals.knight._id %> /edit" class="btn btn-primary" style="margin-top: 16px;">Save</button>
+    <% }%>
     </form>
     <div class = "Links">
-      <a href="/village/view/1">Cancel</a>
+      <a href="/village/view/<%= res.locals.village._id %>" 
+      class"btn btn-sm btn-secondary"><i class="bi bi-arrow-return-left"></i></i></a>
     </div>
 <%- include('footer') -%>

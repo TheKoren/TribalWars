@@ -7,14 +7,13 @@
 
  module.exports = function (objectrepository) {
     const VillageModel = requireOption(objectrepository, 'VillageModel');
-    return function (req, res, next) {
-        if(typeof req.body.name === 'undefined')             {
-                console.log("Body undefined");
+    return (req, res, next) => {
+        if(typeof req.body.villageNameInput === 'undefined')             {
                 return next();
             }
             if(typeof res.locals.village === 'undefined'){
                 res.locals.village = new VillageModel();
-                res.locals.village.name = req.body.name;
+                res.locals.village.name = req.body.villageNameInput;
                 res.locals.village.materials = 400;
                 res.locals.village.knights = 0;
 
@@ -26,12 +25,12 @@
                 })
             }
             else{
-                res.locals.village.name = req.body.name;
+                res.locals.village.name = req.body.villageNameInput;
                 res.locals.village.save(err => {
                     if(err) {
                         return next(err);
                     }
-                    res.redirect('/village/edit/${res.locals.village._id}');
+                    res.redirect(`/village/edit/${res.locals.village._id}`);
                     });            
                 }
     };

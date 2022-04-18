@@ -6,15 +6,27 @@
  const requireOption = require("../requireOption").requireOption;
 
  module.exports = function (objectrepository) {
-    return function (req, res, next) {
-        if((typeof req.body.name === 'undefiend') ||
-        (typeof req.body.xp === 'undefined'))
-        {
-            console.log("Body undefined");
+     const KnightModel = requireOption(objectrepository, 'KnightModel');
+    return (req, res, next) => {
+        if(typeof req.body.knightNameInput === 'undefined'){
             return next();
         }
-        console.log("Saving knight");
-        console.log(req.body);
-        return next();
+
+        if(typeof res.locals.knight === 'undefined')
+        {
+            res.locals.knight = new KnightModel();
+            res.locals.knight.experience = "Novice";
+        }
+
+        res.locals.knight.name = req.body.knightNameInput;
+        res.locals.knight._home = res.locals.village._id;
+
+        return res.locals.knight.save(err => {
+            if(err){
+                return next(err);
+            }
+
+            return res.redirect(`/village/view/${res.locals.village._id}`);
+        });
     };
 };
