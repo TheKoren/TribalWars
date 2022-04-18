@@ -28,6 +28,6 @@ app.use((err, req, res, next) => {
 });
 
 const server = app.listen(port, function () {
-    console.log(`Listening on ${server.address()}:${server.address().port}`);
+    console.log(`Listening on ${server.address().address}:${server.address().port}`);
     console.log("Working".green)
 });
