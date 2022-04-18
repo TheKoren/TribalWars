@@ -6,7 +6,7 @@
  module.exports = function (objectrepository) {
      const KnightModel = requireOption(objectrepository, 'KnightModel');
     return (req, res, next) => {
-        return KnightModel.findOne({_id: req.params.itemid}, (err, knight) => {
+        return KnightModel.findOne({_id: req.params.knightid}, (err, knight) => {
             if(err || !knight){
                 return next(err);
             }
