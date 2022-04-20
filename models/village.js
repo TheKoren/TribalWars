@@ -5,7 +5,7 @@ var Village = db.model('Village', {
   name: String,
   materials: Number,
   knights: Number,
-  _owner: {
+  _user: {
       type: Schema.Types.ObjectId,
       ref: 'User'
   }

@@ -7,6 +7,7 @@
 
  module.exports = function (objectrepository) {
      const KnightModel = requireOption(objectrepository, 'KnightModel');
+
     return (req, res, next) => {
         if(typeof req.body.knightNameInput === 'undefined'){
             return next();
@@ -16,10 +17,10 @@
         {
             res.locals.knight = new KnightModel();
             res.locals.knight.experience = "Novice";
+            res.locals.knight._home = res.locals.village;
         }
 
         res.locals.knight.name = req.body.knightNameInput;
-        res.locals.knight._home = res.locals.village._id;
 
         return res.locals.knight.save(err => {
             if(err){

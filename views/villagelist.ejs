@@ -2,7 +2,6 @@
 <%- include('menu', {activepage: 'villagelist'}) -%>
 
     <h1>Village View</h1>
-    <a href="/">Logout</a>
     <a href="/village/new">Create new village</a>
     <br>
     <br>
@@ -24,7 +23,7 @@
                     <td>
                         <%= village.knights %>
                     </td>
-                    <td allign='center'><a href="/village/view/<%= village._id %> ">View</a>|<a href="/village">Delete</a></td>
+                    <td allign='center'><a href="/village/view/<%= village._id %>">View</a>|<a href="/village/del/<%= village._id %>">Delete</a></td>
                 </tr>
             <% }); %> 
     </table>

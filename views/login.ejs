@@ -1,5 +1,8 @@
 <%- include('header') -%>
     <h1>TribalWars User Login</h1>
+    <% if(typeof error !== 'undefined') { %>
+    <h2> <%= error %> </h2>
+    <% } %> 
     <form action ="/village'">
       <label>Username: </label>
       <input type="text" placeholder="Enter Username" name="username" required>

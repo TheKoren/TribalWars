@@ -1,8 +1,9 @@
 /** Authentication MiddleWares*/
 const authMW = require('../middleware/auth/authMW');
-const checkUserCredentialsMW = require('../middleware/auth/checkUserCredentialsMW');
-const getUserCredentialsMW = require('../middleware/auth/getUserCredentialsMW');
-const saveUserCredentialsMW = require('../middleware/auth/saveUserCredentialsMW');
+const inverseAuthMW = require('../middleware/auth/inverseAuth');
+const loginMW = require('../middleware/auth/loginMW');
+const regMW = require('../middleware/auth/regMW');
+const forgottenpwMW = require('../middleware/auth/forgottenpwMW');
 const logoutMW = require('../middleware/auth/logoutMW');
 /** Village MiddleWares */
 const getVillageMW = require('../middleware/village/getVillageMW');
@@ -88,21 +89,21 @@ module.exports = function (app) {
         renderMW(objRepo, 'battlereport'));
         
     app.use('/forgottenpassword',
-        getUserCredentialsMW(objRepo),
-        saveUserCredentialsMW(objRepo),
+        inverseAuthMW(objRepo),
+        forgottenpwMW(objRepo),
         renderMW(objRepo,'forgottenpassword'));
     
     app.use('/registration',
-        getUserCredentialsMW(objRepo),
-        saveUserCredentialsMW(objRepo),
+        inverseAuthMW(objRepo),
+        regMW(objRepo),
         renderMW(objRepo, 'registration'));
 
     app.use('/logout',
         logoutMW(objRepo));
 
     app.use('/',
-        getUserCredentialsMW(objRepo),
-        checkUserCredentialsMW(objRepo),
-        renderMW(objRepo, 'index'));
+        inverseAuthMW(objRepo), // Ha be van lépve, átírányítja a felhasználót a falu nézetbe
+        loginMW(objRepo),
+        renderMW(objRepo, 'login'));
 
 };
