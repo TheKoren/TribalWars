@@ -13,7 +13,13 @@
             if(err){
                 return next(err)
             }
-            return res.redirect(`/village/view/${res.locals.village._id}`);
-        })
+            res.locals.village.knights = res.locals.village.knights - 1;
+            return res.locals.village.save(err =>{
+                if(err){
+                    return next();
+                }
+                return res.redirect(`/village/view/${res.locals.village._id}`);
+            });
+        });
     };
 };

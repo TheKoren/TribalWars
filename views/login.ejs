@@ -1,20 +1,35 @@
 <%- include('header') -%>
-    <h1>TribalWars User Login</h1>
-    <% if(typeof error !== 'undefined') { %>
-    <h2> <%= error %> </h2>
-    <% } %> 
-    <form action ="/village'">
-      <label>Username: </label>
-      <input type="text" placeholder="Enter Username" name="username" required>
-      <label>Password: </label>
-      <input type="password" placeholder="*********" name="password" required>
-      <button type="submit">Login</button>
-    </form>
-    <% if(typeof error != 'undefined') { %>
-      <div class"alert alert-danger"><%= error %></div>
-      <% } %> 
-    <div class = "Links">
-      <a href="/registration">Registration</a>
-      <a href="/forgottenpassword">Forgotten password</a>
+  <h1>TribalWars User Login</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-6 bg-light align-self-auto m-auto mt-5">
+        <form method="POST">
+          <div class="text-center">
+            <h2>
+              <% if(typeof error !=='undefined' ) { %>
+                <%= error %>
+                  <% } %>
+            </h2>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label mt-2">Username: </label>
+            <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label mt-2">Password: </label>
+            <input type="password" class="form-control" placeholder="******" id="password" name="password" required>
+          </div>
+          <div class="text-center">
+            <input type="submit" class="btn-lg btn-primary mb-1" value="Login" />
+          </div>
+          <div class="text-center">
+            <a class="btn btn-sm btn-outline-primary mb-3" href="/registration" role="button">Dont have an account? Go
+              to registration!</a>
+            <a class="btn btn-sm btn-outline-primary mb-3" href="/forgottenpassword" role="button">Forgotten
+              Password</a>
+          </div>
+        </form>
+      </div>
     </div>
-<%- include('footer') -%>
+  </div>
+  <%- include('footer') -%>

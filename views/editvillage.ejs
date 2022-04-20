@@ -9,14 +9,14 @@
     </h1>
     <form method="POST" style="margin-top: 8px;">
       <div class="form-group">
-        <label for="villageNameInput">Name: </label>
-        <input id="villageNameInput" name="Name" type="text" class="form-control"
+        <label for="villageName">Name: </label>
+        <input id="villageName" name="villageName" type="text" class="form-control"
         value="<%= (typeof village === 'undefined') ? '' : village.name %> ">
       </div>
       <% if(typeof village === 'undefined') {%> 
       <button href="/village" class="btn btn-primary" style="margin-top: 16px;">Save</button>
       <% }else{ %>
-      <button href="/village/view/<%= res.locals.village._id %> " class="btn btn-primary" style="margin-top: 16px;">Save</button>
+      <button href="/village/view/<%= village._id %> " class="btn btn-primary" style="margin-top: 16px;">Save</button>
       <% } %> 
     </form>
     <div class = "Links">

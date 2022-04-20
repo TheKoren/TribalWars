@@ -9,25 +9,39 @@
      const KnightModel = requireOption(objectrepository, 'KnightModel');
 
     return (req, res, next) => {
-        if(typeof req.body.knightNameInput === 'undefined'){
+        if(typeof req.body.knightName === 'undefined'){
             return next();
         }
-
         if(typeof res.locals.knight === 'undefined')
         {
             res.locals.knight = new KnightModel();
             res.locals.knight.experience = "Novice";
             res.locals.knight._home = res.locals.village;
+            res.locals.village.knights = res.locals.village.knights + 1;
+            res.locals.knight.save(err => {
+                if(err){
+                    return next(err);
+                }
+                return res.locals.village.save(err => {
+                    if(err){
+                        return next(err);
+                    }
+                    return res.redirect(`/village/view/${res.locals.village._id}`);
+                });
+            });
+        }else{
+            res.locals.knight.name = req.body.knightName;
+            res.locals.knight.save(err => {
+                if(err){
+                    return next(err);
+                }
+                return res.locals.village.save(err => {
+                    if(err){
+                        return next(err);
+                    }
+                    return res.redirect(`/village/view/${res.locals.village._id}`);
+                });
+            });
         }
-
-        res.locals.knight.name = req.body.knightNameInput;
-
-        return res.locals.knight.save(err => {
-            if(err){
-                return next(err);
-            }
-
-            return res.redirect(`/village/view/${res.locals.village._id}`);
-        });
     };
 };

@@ -3,9 +3,9 @@
 
     <div>
         <h1>Name: <%= village.name %></h1> 
-        <a href="/village/edit/1">Rename</a>
+        <a href="/village/edit/<%= village._id %>">Rename</a>
     </div>
-    <p1> Materials: <%= village.materials %> </p1>
+    <h2> Materials: <%= village.materials %> </h1>
     <h2> Number of knights: <%= village.knights %></h2>
     <table border="1">
         <tr>
@@ -21,13 +21,13 @@
             <td>
                 <%= knight.xp %> 
             </td>
-            <td allign='center'><a href="/knight/:villageid/<%= knight._id %> /edit">Rename</a>|<a href="/village/view/1">Delete</a></td>
+            <td allign='center'><a href="/knight/<%= village._id %>/<%= knight._id %>/edit">Rename</a>|<a href="/knight/<%= village._id %>/<%= knight._id %>/del">Delete</a></td>
         </tr>
         <% }); %> 
     </table>
     <h2>Actions</h2>
     <div class = "Links">
-        <a href="/village/addknight/1">Create New Knight (50 Material)</a>
-        <a href="/attack/1">Attack</a>
+        <a href="/village/addknight/<%= village._id %>">Create New Knight (50 Material)</a>
+        <a href="/attack/<%= village._id %>">Attack</a>
     </div>
 <%- include('footer') -%>

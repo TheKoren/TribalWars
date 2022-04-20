@@ -61,6 +61,7 @@ module.exports = function (app) {
     
     app.use('/village/addknight/:villageid',
         authMW(objRepo),
+        getVillageMW(objRepo),
         saveKnightMW(objRepo),
         renderMW(objRepo, 'editknight'));
 

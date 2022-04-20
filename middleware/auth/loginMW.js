@@ -13,7 +13,7 @@
             }
         return UserModel.findOne({
             username: req.body.username,
-            password: req.body.passoword
+            password: req.body.password
         },(err, user) => {
                 if(err){
                     return next(err);
@@ -29,7 +29,8 @@
                     res.locals.error = "Wrong password!";
                     return next();
                 }else{
-                    req.session.user_id = user.user_id;
+                    req.session.user_id = user._id;
+                    console.log(user._id);
                     return req.session.save(err =>{
                         if(err){
                             return next(err);
