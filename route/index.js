@@ -74,6 +74,7 @@ module.exports = function (app) {
 
     app.get('/knight/:villageid/:knightid/del',
         authMW(objRepo),
+        getVillageMW(objRepo),
         getKnightMW(objRepo),
         delKnightMW(objRepo));
 

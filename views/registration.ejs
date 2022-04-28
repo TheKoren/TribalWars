@@ -1,8 +1,11 @@
 <%- include('header') -%>
-    <h1>TribalWars Registration</h1>
+<%- include('menu') -%>
+
+    
     <div class="container">
       <div class="row">
         <div class="col-6 bg-light align-self-auto m-auto mt-5">
+          <h1>TribalWars Registration</h1>
           <form method="POST">
             <div class="text-center">
               <h2><% if(typeof error !== 'undefined') { %> <%= error %>  <% } %> </h2>

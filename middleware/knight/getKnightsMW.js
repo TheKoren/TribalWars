@@ -10,7 +10,7 @@
             return next();
         }
 
-        return KnightModel.find({_village: res.locals.village._id}, (err, knights) => {
+        return KnightModel.find({_home: res.locals.village._id}, (err, knights) => {
             if(err){
                 return next(err);
             }

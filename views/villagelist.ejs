@@ -1,30 +1,40 @@
 <%- include('header') -%>
-<%- include('menu', {activepage: 'villagelist'}) -%>
+    <%- include('menu') -%>
 
-    <h1>Village View</h1>
-    <a href="/village/new">Create new village</a>
-    <br>
-    <br>
-    <table border="1">
-            <tr>
-                <th>Name</th>
-                <th>Raw Materials</th>
-                <th>Number of knights</th>
-                <th>Villageview</th>
-            </tr>
-            <% villages.forEach(function(village) { %> 
-                <tr align="center">
-                    <td>
-                        <%= village.name %>
-                    </td>
-                    <td>
-                        <%= village.materials %>
-                    </td>
-                    <td>
-                        <%= village.knights %>
-                    </td>
-                    <td allign='center'><a href="/village/view/<%= village._id %>">View</a>|<a href="/village/del/<%= village._id %>">Delete</a></td>
-                </tr>
-            <% }); %> 
-    </table>
-<%- include('footer') -%>
+        <div class="container align-self-center">
+            <div class="row text-black-50">
+                <div class="col-sm mt-4">
+                    <h1>Your villages</h1>
+                    <a href="/village/new" class="btn btn-primary">Create new village</a>
+                </div>
+                <table class="table table-hover table-striped table-bordered bg-light caption-top mt-4">
+                    <tr>
+                        <th>Name</th>
+                        <th>Raw Materials</th>
+                        <th>Number of knights</th>
+                        <th>View</th>
+                        <th>Delete</th>
+                    </tr>
+                    <% villages.forEach(function(village) { %>
+                        <tr>
+                            <td>
+                                <%= village.name %>
+                            </td>
+                            <td>
+                                <%= village.materials %>
+                            </td>
+                            <td>
+                                <%= village.knights %>
+                            </td>
+                            <td>
+                                <a class="btn btn-info" href="/village/view/<%= village._id %>">View</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="/village/del/<%= village._id %>">Delete</a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </table>
+        </div>
+        </div>
+        <%- include('footer') -%>

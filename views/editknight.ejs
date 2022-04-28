@@ -1,18 +1,14 @@
 <%- include('header') -%>
   <%- include('menu') -%>
-
-    <h1>Knight
-      <% if(typeof knight==='undefined' ) { %>
-        Creation
-        <% }else{ %>
-          Rename
-          <% }%>
-    </h1>
-    <% if(!(typeof knight==='undefined' )){ %>
-      <h2>
-        <%= knight.name %>
-      </h2>
-      <% } %> 
+<div class="container mt-4 text-center">
+  <h1>Knight
+    <% if(typeof knight==='undefined' ) { %>
+      Creation
+      <% }else{ %>
+        Rename
+        <% }%>
+  </h1>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-6 bg-light align-self-auto m-auto mt-5">

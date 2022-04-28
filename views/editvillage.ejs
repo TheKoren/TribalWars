@@ -1,25 +1,38 @@
 <%- include('header') -%>
-<%- include('menu') -%>
-    <h1>Village 
-      <% if(typeof village === 'undefined') { %>
-        Creation
-      <% }else{ %>
-        Rename
-      <% } %> 
-    </h1>
-    <form method="POST" style="margin-top: 8px;">
-      <div class="form-group">
-        <label for="villageName">Name: </label>
-        <input id="villageName" name="villageName" type="text" class="form-control"
-        value="<%= (typeof village === 'undefined') ? '' : village.name %> ">
-      </div>
-      <% if(typeof village === 'undefined') {%> 
-      <button href="/village" class="btn btn-primary" style="margin-top: 16px;">Save</button>
-      <% }else{ %>
-      <button href="/village/view/<%= village._id %> " class="btn btn-primary" style="margin-top: 16px;">Save</button>
-      <% } %> 
-    </form>
-    <div class = "Links">
-      <a href="<%= (typeof village === 'undefined') ? '/village' : '/village/view/' + village._id %>" class="btn btn-sm btn-secondary"><i class="bi bi-arrow-return-left"></i></a>
+  <%- include('menu') -%>
+    <div class="container mt-4 text-center">
+      <h1>Village
+        <% if(typeof village==='undefined' ) { %>
+          Creation
+          <% }else{ %>
+            Rename
+            <% } %>
+      </h1>
     </div>
-<%- include('footer') -%>
+    <div class="container">
+      <div class="row">
+        <div class="col-6 bg-light align-self-auto m-auto mt-5">
+          <form method="POST" style="margin-top: 8px;">
+            <div class="form-group">
+              <label for="villageName">Name: </label>
+              <input id="villageName" name="villageName" type="text" class="form-control"
+                value="<%= (typeof village === 'undefined') ? '' : village.name %> ">
+            </div>
+            <% if(typeof village==='undefined' ) {%>
+              <button href="/village" class="btn btn-primary" style="margin-top: 16px;">Save</button>
+              <% }else{ %>
+                <button href="/village/view/<%= village._id %> " class="btn btn-primary"
+                  style="margin-top: 16px;">Save</button>
+                <% } %>
+          </form>
+          <div class="Links">
+            <a href="<%= (typeof village === 'undefined') ? '/village' : '/village/view/' + village._id %>"
+              class="btn btn-sm btn-secondary"><i class="bi bi-arrow-return-left"></i></a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <%- include('footer') -%>

@@ -1,33 +1,63 @@
 <%- include('header') -%>
-<%- include('menu') -%>
+    <%- include('menu') -%>
 
-    <div>
-        <h1>Name: <%= village.name %></h1> 
-        <a href="/village/edit/<%= village._id %>">Rename</a>
-    </div>
-    <h2> Materials: <%= village.materials %> </h1>
-    <h2> Number of knights: <%= village.knights %></h2>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Level</th>
-            <th>Options</th>
-        </tr>
-        <% knights.forEach(function(knight) { %> 
-        <tr>
-            <td>
-                <%= knight.name %>     
-            </td>
-            <td>
-                <%= knight.xp %> 
-            </td>
-            <td allign='center'><a href="/knight/<%= village._id %>/<%= knight._id %>/edit">Rename</a>|<a href="/knight/<%= village._id %>/<%= knight._id %>/del">Delete</a></td>
-        </tr>
-        <% }); %> 
-    </table>
-    <h2>Actions</h2>
-    <div class = "Links">
-        <a href="/village/addknight/<%= village._id %>">Create New Knight (50 Material)</a>
-        <a href="/attack/<%= village._id %>">Attack</a>
-    </div>
-<%- include('footer') -%>
+        <div class="container align-self-center">
+            <div class="row text-black-50">
+                <div class="col-sm mt-4">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="/static/img/village.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Name: <%= village.name %>
+                            </h5>
+                            <p class="card-text">
+                            <div class="d-grid gap-3">
+                                <div class="p-2 bg-light border">Materials: <%= village.materials %>
+                                </div>
+                                <div class="p-2 bg-light border">Number of knights: <%= village.knights %>
+                                </div>
+                            </div>
+                            </p>
+                            <a href="/village/edit/<%= village._id %>" class="btn btn-primary">Rename Village</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm mt-4">
+                    <div class="d-grid gap-3">
+                        <h5>Actions</h5>
+                        <div class="p-2 bg-light border"><a href="/village/addknight/<%= village._id %>">Create New
+                                Knight (50 Material)</a></div>
+                        <div class="p-2 bg-light border"><a href="/attack/<%= village._id %>">Attack</a></div>
+                    </div>
+                </div>
+                <div class="col-sm-6"></div>
+                <table class="table table-hover table-striped table-bordered bg-light caption-top">
+                    <caption>List of knights</caption>
+                    <tr>
+                        <th>Name</th>
+                        <th>Level</th>
+                        <th>Rename</th>
+                        <th>Delete</th>
+                    </tr>
+                    <% knights.forEach(function(knight) { %>
+                        <tr>
+                            <td>
+                                <%= knight.name %>
+                            </td>
+                            <td>
+                                <%= knight.xp %>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning"
+                                    href="/knight/<%= village._id %>/<%= knight._id %>/edit">Rename</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger"
+                                    href="/knight/<%= village._id %>/<%= knight._id %>/del">Delete</a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </table>
+            </div>
+        </div>
+        </div>
+        <%- include('footer') -%>
