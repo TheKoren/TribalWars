@@ -20,7 +20,7 @@
                 return next();
             }
             res.locals.knight = new KnightModel();
-            res.locals.knight.xp = "Novice";
+            res.locals.knight.xp = 1;
             res.locals.knight._home = res.locals.village;
             res.locals.village.knights = res.locals.village.knights + 1;
             res.locals.village.materials = res.locals.village.materials - 50;

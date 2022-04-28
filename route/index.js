@@ -33,7 +33,7 @@ module.exports = function (app) {
     
     app.get('/village',
         authMW(objRepo),
-        getVillagesMW(objRepo),
+        getVillagesMW(objRepo, true),
         renderMW(objRepo, 'villagelist'));
 
     app.use('/village/new',
@@ -78,12 +78,13 @@ module.exports = function (app) {
         getKnightMW(objRepo),
         delKnightMW(objRepo));
 
-    app.use('/attack/:villageid',
+    app.use('/village/attack/:villageid',
         authMW(objRepo),
-        getVillagesMW(objRepo),
+        getVillageMW(objRepo),
+        getVillagesMW(objRepo, false),
         renderMW(objRepo, 'attack'));
 
-    app.get('/attack/:villageid/report',
+    app.get('/village/attack/:villageid/report',
         authMW(objRepo),
         getVillageMW(objRepo),
         getKnightsMW(objRepo),
@@ -104,7 +105,7 @@ module.exports = function (app) {
         logoutMW(objRepo));
 
     app.use('/',
-        inverseAuthMW(objRepo), // Ha be van lépve, átírányítja a felhasználót a falu nézetbe
+        inverseAuthMW(objRepo),
         loginMW(objRepo),
         renderMW(objRepo, 'login'));
 

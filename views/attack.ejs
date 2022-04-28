@@ -1,14 +1,29 @@
 <%- include('header') -%>
 <%- include('menu') -%>
-    <h1>Attack village</h1>
-    <label for="villages">Target</label>
 
-    <select name="cars" id="cars">
-        <option value="azeroth">Azeroth</option>
-        <option value="tmit">TMIT City</option>
-    </select>
-    <div class = "Links">
-        <a href="/village/view/1">Cancel</a>
-        <form action ="/attack/1/report"><button type="submit">Begin Assault</button></form>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 bg-light align-self-auto m-auto mt-4">
+                <div class="text-center">
+                    <h1>Attack village</h1>
+                </div>
+                <form method="POST">
+                    <div class="text-center">
+                        <h2><% if(typeof error !== 'undefined') { %> <%= error %>  <% } %> </h2>
+                    </div>
+                    <label for="target" class="form-label mt-2">Choose a target for your attack:</label>
+                    <select id="target" name="target">
+                        <% enemyvillages.forEach(function(enemyvillage) { %> 
+                        <option value="<%= enemyvillage._id %>"><%= enemyvillage.name %></option>
+                        <% }); %>
+                </select>
+                <input type="submit" class="btn-lg btn-primary mb-1" value="Attack" />
+                <div class="text-center">
+                    <a class="btn btn-sm btn-secondary" href="/village/view/<%= village._id %>">
+                    <i class="bi bi-arrow-return-left"></i></a>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>    
 <%- include('footer') -%>
