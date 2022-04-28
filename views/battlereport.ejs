@@ -2,8 +2,15 @@
 <%- include('menu') -%>
 
     <h1>Battle report</h1>
-    <p1>Result:</p1><p1 style="color: green;">Victory<br></p1>
-    <p1>Looted materials: 42<br></p1>
-    <p1>Sir Percival gained a level. He is now Apprentice<br></p1>
-    <a href="/village/view/1">Back to village view<br></a>
-%- include('footer') -%>
+    <p1>Result:</p1><% if(result){ %> 
+    <p1 style="color: green;">Victory<br></p1>
+    <% }else{ %> 
+    <p1 style="color: red;">Defeat<br></p1>
+    <% } %> 
+    <p1>Looted materials: <%= looted %>  <br></p1>
+    <% if(result) { %>
+        <% knights.forEach(function(knight) { %>
+            <p1> <%= knight.name %> gained a level. He is now: lvl <% knight.xp %> </p1>
+            <% });} %>   
+    <a href="/village/view/<%= village._id %> ">Back to village view<br></a>
+<%- include('footer') -%>

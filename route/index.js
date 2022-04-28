@@ -23,6 +23,7 @@ const renderMW = require('../middleware/renderMW');
 const UserModel = require('../models/user');
 const VillageModel = require('../models/village');
 const KnightModel = require('../models/knight');
+const attackMW = require('../middleware/battle/attackMW');
 
 module.exports = function (app) {
     const objRepo = {
