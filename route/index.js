@@ -17,13 +17,13 @@ const saveKnightMW = require('../middleware/knight/saveKnightMW');
 const delKnightMW = require('../middleware/knight/delKnightMW');
 /**Battle MiddleWares */
 const calculateBattleMW = require('../middleware/battle/calculateBattleMW');
+const reportMW = require('../middleware/battle/reportMW');
 /**Other MiddleWares*/
 const renderMW = require('../middleware/renderMW');
 
 const UserModel = require('../models/user');
 const VillageModel = require('../models/village');
 const KnightModel = require('../models/knight');
-const attackMW = require('../middleware/battle/attackMW');
 
 module.exports = function (app) {
     const objRepo = {
@@ -79,19 +79,25 @@ module.exports = function (app) {
         getKnightMW(objRepo),
         delKnightMW(objRepo));
 
-    app.use('/village/attack/:villageid',
-        authMW(objRepo),
-        getVillageMW(objRepo),
-        getVillagesMW(objRepo, false),
-        renderMW(objRepo, 'attack'));
-
     app.get('/village/attack/:villageid/report',
         authMW(objRepo),
         getVillageMW(objRepo),
         getKnightsMW(objRepo),
-        calculateBattleMW(objRepo),
+        reportMW(objRepo),
         renderMW(objRepo, 'battlereport'));
-        
+
+    app.use('/village/attack/:villageid',
+        authMW(objRepo),
+        getVillageMW(objRepo),
+        getKnightsMW(objRepo),
+        getVillagesMW(objRepo, false),
+        calculateBattleMW(objRepo),
+        renderMW(objRepo, 'attack'));
+
+    
+    app.use('/about',
+        renderMW(objRepo, 'about'));
+    
     app.use('/forgottenpassword',
         inverseAuthMW(objRepo),
         forgottenpwMW(objRepo),

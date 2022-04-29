@@ -11,13 +11,17 @@
                     <div class="text-center">
                         <h2><% if(typeof error !== 'undefined') { %> <%= error %>  <% } %> </h2>
                     </div>
-                    <label for="target" class="form-label mt-2">Choose a target for your attack:</label>
-                    <select id="target" name="target">
-                        <% enemyvillages.forEach(function(enemyvillage) { %> 
-                        <option value="<%= enemyvillage._id %>"><%= enemyvillage.name %></option>
-                        <% }); %>
-                </select>
-                <input type="submit" class="btn-lg btn-primary mb-1" value="Attack" />
+                    <div class="mb-3">
+                        <label for="target" class="form-label mt-2">Choose a target for your attack:</label>
+                        <select id="target" name="target">
+                            <% enemyvillages.forEach(function(enemyvillage) { %> 
+                            <option value="<%= enemyvillage._id %>"><%= enemyvillage.name %></option>
+                            <% }); %>
+                    </select>
+                    </div>  
+                <div class="text-center">
+                    <input type="submit" class="btn-lg btn-primary mb-1" value="Attack" />
+                </div>
                 <div class="text-center">
                     <a class="btn btn-sm btn-secondary" href="/village/view/<%= village._id %>">
                     <i class="bi bi-arrow-return-left"></i></a>

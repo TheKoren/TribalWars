@@ -70,7 +70,12 @@ module.exports = function (objectrepository) {
                         }
                     });
                 });
-                return next();
+
+                req.session.result = {
+                    report: res.locals.report,
+                    loot: res.locals.looted,
+                };
+                return res.redirect(`/village/attack/${res.locals.village._id}/report`);
             });
         });
     };
