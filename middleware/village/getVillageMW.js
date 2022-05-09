@@ -10,12 +10,8 @@
             _id: req.params.villageid,
             _user: req.session.user_id
         },(err, village) => {
-                if(err){
+                if(err || !village){
                     return next(err);
-                }
-                if(village === null)
-                {
-                    return res.redirect('/village');
                 }
 
                 res.locals.village = village;
